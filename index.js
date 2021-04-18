@@ -1,6 +1,7 @@
 const express = require('express');
 
 const cors = require('cors');
+const ObjectID = require('mongodb').ObjectID;
 
 // const fileUpload = require('express-fileupload');
 const MongoClient = require('mongodb').MongoClient;
@@ -51,8 +52,9 @@ client.connect(err => {
 
 
   app.get('/userBooking', (req, res) => {
-    appointmentCollection.find({ email: req.query.email })
+    appointmentCollection.find({email : req.query.email})
       .toArray((err, doc) => {
+        console.log( req.query.email);
         res.send(doc)
         console.log(doc);
       })
